@@ -53,3 +53,5 @@ The server should run on port `5173`
 - Log in using YouTube
 - Editing and creating playlists for both platforms
 - Migrating playlists from both platforms
+- Change the communication between the servers to HTTPS
+- Add authentication tokens when calling the server API
