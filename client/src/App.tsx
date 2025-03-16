@@ -15,6 +15,7 @@ function Header() {
   return (
     <header>
       <LoginButton />
+      <LoginYoutubeButton />
       <LogOutButton />
     </header>
   )
@@ -23,6 +24,16 @@ function Header() {
 function LoginButton() {
   const handleClick = () => {
     window.location.href = 'http://127.0.0.1:8080/login';  // Open in the same tab
+  }
+
+  return (
+    <button onClick={handleClick}>Login</button>
+  )
+}
+
+function LoginYoutubeButton() {
+  const handleClick = () => {
+    window.location.href = 'http://127.0.0.1:8080/api/youtube/login';  // Open in the same tab
   }
 
   return (

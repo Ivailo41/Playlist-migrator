@@ -1,13 +1,18 @@
 import spotipy
 import os
 from spotipy.oauth2 import SpotifyOAuth
-from flask import Flask, url_for, session, request, redirect, jsonify
+from flask import Flask, session, request, redirect, jsonify
 import time
 from flask_cors import CORS , cross_origin
 from spotipy.cache_handler import FlaskSessionCacheHandler
 
+import google_auth_oauthlib.flow
+import googleapiclient.discovery
+import googleapiclient.errors
+
 SPOTIPY_REDIRECT_URI = 'http://127.0.0.1:8080/callback'
 SCOPES = ["playlist-read-private", "playlist-modify-private"]
+YTSCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
 
 cacheHandler = FlaskSessionCacheHandler(session)
 
@@ -18,7 +23,7 @@ app.secret_key = os.urandom(64)
 app.config['SESSION_COOKIE_NAME'] = 'spotify-login-session'
 
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
-app.config['SESSION_COOKIE_SECURE'] = True  # Only enable this in production with HTTPS
+app.config['SESSION_COOKIE_SECURE'] = False  # Only enable this in production with HTTPS
 
 cors = CORS(app, origins='http://localhost:5173', supports_credentials=True)
 
@@ -119,6 +124,38 @@ def isAuthorized():
 
 def start_flask_app():
     app.run(port=8080)
+
+
+#YOUTUBE API
+
+@app.route('/api/youtube/login')
+def loginYT():
+    # Disable OAuthlib's HTTPS verification when running locally.
+    # *DO NOT* leave this option enabled in production.
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+    api_service_name = "youtube"
+    api_version = "v3"
+    client_secrets_file = "server/auth.json"
+
+    # Get credentials and create an API client
+    flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
+        client_secrets_file, YTSCOPES)
+    credentials = flow.run_local_server(bind_addr='127.0.0.1', port=8081)
+    youtube = googleapiclient.discovery.build(
+        api_service_name, api_version, credentials=credentials)
+
+    request = youtube.channels().list(
+        part="snippet,contentDetails,statistics",
+        forUsername="GoogleDevelopers"
+    )
+    response = request.execute()
+
+    print(response)
+
+@app.route('/api/youtube/callback')
+def callback():
+    return redirect('http://localhost:5173/')
 
 if __name__ == '__main__':
     start_flask_app()

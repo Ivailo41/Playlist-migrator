@@ -27,4 +27,9 @@ venv
 # Cache files
 .cache
 backup.py
+tempCodeRunnerFile.py
+__pycache__
+
+# authorization
+auth.json
 

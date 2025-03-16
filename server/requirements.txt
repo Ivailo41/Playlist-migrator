@@ -1,3 +1,5 @@
 Flask==3.1.0
 flask_cors==5.0.1
+google_api_python_client==2.164.0
+google_auth_oauthlib==1.2.1
 spotipy==2.25.1
