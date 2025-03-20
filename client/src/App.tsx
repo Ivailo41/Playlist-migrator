@@ -16,6 +16,7 @@ function Header() {
     <header>
       <LoginButton />
       <LoginYoutubeButton />
+      <GetYouTubePlaylists />
       <LogOutButton />
     </header>
   )
@@ -37,7 +38,7 @@ function LoginYoutubeButton() {
   }
 
   return (
-    <button onClick={handleClick}>Login</button>
+    <button onClick={handleClick}>YT Login</button>
   )
 }
 
@@ -155,6 +156,37 @@ function PlaylistItem({ playlist }: { playlist: any }) {
         ))}
       </ul>
     </div>
+  )
+}
+
+function GetYouTubePlaylists() {
+
+  const fetchPlaylists = async () => {
+
+    const response = await fetch('http://127.0.0.1:8080/api/youtube/getPlaylists', {
+      method: 'GET',
+      credentials: 'include',  // Include cookies in the request
+    });
+
+    const data = await response.json();
+    return data;
+  }
+
+  const handleClick = () => {
+    fetchPlaylists()
+      .then((data) => {
+        if (data['error']) {
+          console.log(data['error']);
+          return;
+        }
+        console.log(data);
+    }).catch((error) => {
+      console.error('Error:', error);
+    });
+  };
+
+  return (
+    <button onClick={handleClick}>Print YT Playlists</button>
   )
 }
 
