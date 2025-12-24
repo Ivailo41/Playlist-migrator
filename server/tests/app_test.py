@@ -6,7 +6,7 @@ def test_login(client, mock_spotify_oauth, mock_env):
 
 
 # Test /callback route
-def test_callback(client, mock_spotify_oauth):
+def test_callback(client, mock_spotify_oauth, mock_env):
     with client.session_transaction() as sess:
         pass  # session starts empty
     response = client.get("/callback?code=mock_code")
