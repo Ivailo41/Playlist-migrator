@@ -55,3 +55,12 @@ def mock_spotify_client():
         }
         mock_spotify_class.return_value = mock_sp
         yield mock_sp
+
+
+@pytest.fixture
+def mock_env():
+    with patch.dict("os.environ", {
+        "SPOTIPY_CLIENT_ID": "mock_client_id",
+        "SPOTIPY_CLIENT_SECRET": "mock_client_secret"
+    }):
+        yield

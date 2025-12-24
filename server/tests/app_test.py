@@ -1,5 +1,5 @@
 # Test /login route
-def test_login(client, mock_spotify_oauth):
+def test_login(client, mock_spotify_oauth, mock_env):
     response = client.get("/login")
     assert response.status_code == 302
     assert response.headers["Location"] == "http://mock_auth_url"
