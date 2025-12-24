@@ -30,7 +30,7 @@ jobs:
         run: |
           pip install flake8 black
           black --check server/
-          flake8 server/
+          flake8 server/ --max-line-length=88
 
       - name: Run tests
         run: |
