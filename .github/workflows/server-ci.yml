@@ -34,5 +34,5 @@ jobs:
 
       - name: Run tests
         run: |
+          PYTHONPATH=$(pwd)
           pytest -v
-          working-directory: .
