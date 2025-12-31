@@ -3,8 +3,8 @@ import os
 from flask import Flask
 from flask_cors import CORS
 
-from server.routes.youtube import youtubeBP
-from server.routes.spotify import spotifyBP
+from routes.youtube import youtubeBP
+from routes.spotify import spotifyBP
 
 
 # App config
@@ -28,4 +28,6 @@ app = create_app()
 cors = CORS(app, origins="http://localhost:5173", supports_credentials=True)
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    host = os.environ.get("FLASK_HOST", "127.0.0.1")
+    port = int(os.environ.get("FLASK_PORT", 8080))
+    app.run(host=host, port=port)

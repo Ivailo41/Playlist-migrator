@@ -21,7 +21,7 @@ jobs:
 
             - name: Build Production Image
               run: |
-                docker build -t server:latest .
+                docker build -t server:latest -f server/Dockerfile .
 
             - name: Tag Production Image
               run: |
