@@ -9,6 +9,8 @@ from spotipy.cache_handler import FlaskSessionCacheHandler
 spotifyBP = Blueprint("spotifyBP", __name__)
 cacheHandler = FlaskSessionCacheHandler(session)
 
+FRONTEND_BASE_URL = os.environ.get("FRONTEND_BASE_URL", "http://localhost:5173")
+
 SPOTIPY_REDIRECT_URI = "http://127.0.0.1:8080/callback"
 SCOPES = ["playlist-read-private", "playlist-modify-private"]
 
@@ -27,14 +29,14 @@ def authorize():
     token_info = sp_oauth.get_access_token(code)
     print(token_info)
     session["token_info"] = token_info
-    return redirect("http://localhost:5173/")
+    return redirect(FRONTEND_BASE_URL)
 
 
 @spotifyBP.route("/logout")
 def logout():
     for key in list(session.keys()):
         session.pop(key)
-    return redirect("http://localhost:5173/")
+    return redirect(FRONTEND_BASE_URL)
 
 
 @spotifyBP.route("/getUserPlaylists")
