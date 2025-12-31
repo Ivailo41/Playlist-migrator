@@ -9,7 +9,7 @@ from google.oauth2.credentials import Credentials
 youtubeBP = Blueprint("youtubeBP", __name__)
 YTSCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
 
-FRONTEND_BASE_URL = os.environ.get("FRONTEND_BASE_URL", "http://localhost:5173")
+FRONTEND_BASE_URL = os.environ.get("FRONTEND_BASE_URL", "http://localhost:5173/")
 
 
 @youtubeBP.route("/api/youtube/login")

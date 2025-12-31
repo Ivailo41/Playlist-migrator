@@ -9,7 +9,7 @@ from spotipy.cache_handler import FlaskSessionCacheHandler
 spotifyBP = Blueprint("spotifyBP", __name__)
 cacheHandler = FlaskSessionCacheHandler(session)
 
-FRONTEND_BASE_URL = os.environ.get("FRONTEND_BASE_URL", "http://localhost:5173")
+FRONTEND_BASE_URL = os.environ.get("FRONTEND_BASE_URL", "http://localhost:5173/")
 
 SPOTIPY_REDIRECT_URI = "http://127.0.0.1:8080/callback"
 SCOPES = ["playlist-read-private", "playlist-modify-private"]
