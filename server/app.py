@@ -3,8 +3,8 @@ import os
 from flask import Flask
 from flask_cors import CORS
 
-from routes.youtube import youtubeBP
-from routes.spotify import spotifyBP
+from server.routes.youtube import youtubeBP
+from server.routes.spotify import spotifyBP
 
 
 # App config
