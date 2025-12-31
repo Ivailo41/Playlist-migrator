@@ -53,7 +53,7 @@ jobs:
 
       - name: Build Image
         run: |
-          docker build -t server:develop -f server/Dockerfile .
+          docker build -t server:develop -f server/DockerFile .
 
       - name: Tag Image
         run: |
