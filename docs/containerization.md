@@ -1,6 +1,4 @@
-# Containerization
-
-## Purpose and Scope
+# Purpose and Scope
 This document describes how to containerize the server and run it in docker <br>
 It explains how the backend application is packaged into Docker image.
 
@@ -9,7 +7,7 @@ The goals of the containerization are:
 - Efficient image builds and reproducibility
 - Seamless integration with the CI/CD pipeline and Kubernetes
 
-## Repository Structure
+# Repository Structure
 The repository is organized as follows:
 ```
 .
@@ -20,9 +18,9 @@ The repository is organized as follows:
 └─ server/
    └─ DockerFile
 ```
-## Create Docker Image
+# Create Docker Image
 
-### Dockerfile
+## Dockerfile
 >Docker is a software platform designed to build, test, and deploy applications quickly by packaging software into standardized units called containers. These containers include everything an application needs to run, such as libraries, system tools, and code, ensuring consistent performance across any environment.
 
 Dockerfile is used to describe how a container will be build. The one inside the server folder will:
@@ -35,7 +33,7 @@ Dockerfile is used to describe how a container will be build. The one inside the
 7. Set the environment variables that the server needs to run
 8. Start command
 
-### Create image command
+## Create image command
 To create the docker image run the following command in the terminal:
 ```
 docker build -t server:develop -f server/DockerFile .

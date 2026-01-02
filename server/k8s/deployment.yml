@@ -16,14 +16,38 @@ spec:
         - name: server
           image: ivailo41/server:develop
           imagePullPolicy: Always
+          
           ports:
             - containerPort: 8080
+
           envFrom:
             - configMapRef:
                 name: server-config
-          envFrom:
             - secretRef:
                 name: server-secret
-          env:
-            - name: FRONTEND_BASE_URL
-              value: "https://ivailo41.github.io/Playlist-migrator/"
+
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3

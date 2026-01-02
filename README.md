@@ -14,6 +14,7 @@ The project implements an automated CI/CD pipeline and uses Docker to containeri
 # Documentation
 - [CI/CD Pipeline](docs/cicd.md)
 - [Containerization](docs/containerization.md)
+- [Kubernetes Deployment](/docs/kubernetes.md)
 
 # How to run
 Make sure you have installed:

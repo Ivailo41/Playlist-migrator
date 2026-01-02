@@ -31,3 +31,13 @@ if __name__ == "__main__":
     host = os.environ.get("FLASK_HOST", "127.0.0.1")
     port = int(os.environ.get("FLASK_PORT", 8080))
     app.run(host=host, port=port)
+
+
+@app.route("/health")
+def health_check():
+    return "OK", 200
+
+
+@app.route("/ready")
+def ready_check():
+    return "OK", 200
