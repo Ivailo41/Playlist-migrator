@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip
 
     
-    COPY server/ ./server
+COPY server/ ./server
     
 # Install Python dependencies
 RUN pip install --no-cache-dir --break-system-packages -r server/requirements.txt

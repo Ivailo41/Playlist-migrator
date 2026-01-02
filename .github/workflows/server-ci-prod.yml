@@ -6,7 +6,7 @@ on:
             - main
 
 jobs:
-    deploy-server-prod-image:
+    build-server-prod-image:
         runs-on: ubuntu-latest
 
         steps:

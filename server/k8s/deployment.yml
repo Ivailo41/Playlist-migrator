@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+        - name: server
+          image: ivailo41/server:develop
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: server-config
+          envFrom:
+            - secretRef:
+                name: server-secret
+          env:
+            - name: FRONTEND_BASE_URL
+              value: "https://ivailo41.github.io/Playlist-migrator/"
