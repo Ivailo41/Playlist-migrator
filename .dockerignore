@@ -1,0 +1,7 @@
+.git
+server/__pycache__/
+*.pyc
+.env
+venv/
+.env.*
+server/auth.json
