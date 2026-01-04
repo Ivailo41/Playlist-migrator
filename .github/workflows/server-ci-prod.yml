@@ -9,6 +9,9 @@ jobs:
     build-server-prod-image:
         runs-on: ubuntu-latest
 
+        permissions:
+          contents: read
+
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
@@ -22,6 +25,13 @@ jobs:
             - name: Build Production Image
               run: |
                 docker build -t server:latest -f server/DockerFile .
+
+            - name: Scan Production Image with Trivy
+              uses: aquasecurity/trivy-action@master
+              with:
+                image-ref: server:latest
+                severity: HIGH,CRITICAL
+                exit-code: 1
 
             - name: Tag Production Image
               run: |

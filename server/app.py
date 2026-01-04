@@ -24,8 +24,9 @@ def create_app():
     return app
 
 
+FRONTEND_BASE_URL = os.environ.get("FRONTEND_BASE_URL", "http://localhost:5173/")
 app = create_app()
-cors = CORS(app, origins="http://localhost:5173", supports_credentials=True)
+cors = CORS(app, origins=FRONTEND_BASE_URL, supports_credentials=True)
 
 if __name__ == "__main__":
     host = os.environ.get("FLASK_HOST", "127.0.0.1")

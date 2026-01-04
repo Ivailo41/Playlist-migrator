@@ -50,7 +50,10 @@ def get_user_playlists():
     if playlists is None:
         return jsonify({"error": "Invalid SPotify token"}), 401
     else:
-        return playlists
+        resp = jsonify(playlists)
+        resp.headers["Access-Control-Allow-Origin"] = "https://ivailo41.github.io"
+        resp.headers["Access-Control-Allow-Credentials"] = "true"
+        return resp
 
 
 @spotifyBP.route("/getPlaylistTracks")
