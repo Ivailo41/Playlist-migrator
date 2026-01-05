@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: server
-          image: ivailo41/server:develop
+          image: ivailo41/server:prod-latest
           imagePullPolicy: Always
           
           ports:
