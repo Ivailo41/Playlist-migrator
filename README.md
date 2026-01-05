@@ -1,13 +1,20 @@
 # Playlist migrator
-A simple client-server app that transfers music playlists between Spotify and YouTube Music.
+A simple client-server application that transfers music playlists between Spotify and YouTube Music.
 
-The app uses Python with Flask for the server and React with TypeScript for the front end.
+The project implements an automated CI/CD pipeline and uses Docker to containerize the server and deploy it using the minikube distro of Kubernetes
+>This CI/CD setup is not production ready, meant for learning purposes and project for my DevOps university course
 
 # Features
 `The app is still in development. For now these features are present:`
 - Logging in using a Spotify account
+- Logging in using a Google account
 - Displaying your Spotify playlists
 - Display the tracks of a Spotify playlist
+
+# Documentation
+- [CI/CD Pipeline](docs/cicd.md)
+- [Containerization](docs/containerization.md)
+- [Kubernetes Deployment](/docs/kubernetes.md)
 
 # How to run
 Make sure you have installed:
@@ -45,12 +52,11 @@ After everything is set up, you can navigate to the server's folder and run the 
 
 Then, navigate to the client folder and run the frontend server by calling
 ```
-\Playlist-migrator\client> npm run
+\Playlist-migrator\client> npm run dev
 ```
 The server should run on port `5173`
 
 # Planned features
-- Log in using YouTube
 - Editing and creating playlists for both platforms
 - Migrating playlists from both platforms
 - Change the communication between the servers to HTTPS
