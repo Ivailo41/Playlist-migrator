@@ -82,6 +82,15 @@ def get_playlist_tracks():
         return jsonify({"error": "Invalid playlistId"}), 400
     else:
         return jsonify(response)
+    
+
+#Temporary endpoint to demonstrate project workflow
+@spotifyBP.route("/getUserInfo")
+def get_user_info():
+    resp = jsonify("UserInfo", 200)
+    resp.headers["Access-Control-Allow-Origin"] = "https://ivailo41.github.io"
+    resp.headers["Access-Control-Allow-Credentials"] = "true"
+    return resp
 
 
 # Checks to see if token is valid and gets a new token if not
