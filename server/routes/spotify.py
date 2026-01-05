@@ -82,9 +82,9 @@ def get_playlist_tracks():
         return jsonify({"error": "Invalid playlistId"}), 400
     else:
         return jsonify(response)
-    
 
-#Temporary endpoint to demonstrate project workflow
+
+# Temporary endpoint to demonstrate project workflow
 @spotifyBP.route("/getUserInfo")
 def get_user_info():
     resp = jsonify("UserInfo", 200)
